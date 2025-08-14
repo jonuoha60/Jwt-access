@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from './AuthProvider.js';
-import { FcGoogle } from "react-icons/fc"          
-import { FaGithub } from "react-icons/fa"         
+import { FcGoogle } from "react-icons/fc"          // Google colored icon
+import { FaGithub } from "react-icons/fa"         // GitHub icon
 import { FaLinkedin } from "react-icons/fa"
 
 const Login = () => {
@@ -42,19 +42,22 @@ const Login = () => {
     setLoader(true)
 
     try {
-      const response = await axios.post("http://localhost:3000/login", { email, password }, { withCredentials: true });
-
+      const response = await axios.post("http://localhost:3000/login", {
+        email,
+        password
+      });
 
 
 
       if (response.data) {
-         const { token} = response.data;
+         const { token, refreshToken } = response.data;
          const { username, email, id, created_at, firebaseUid } = response.data.user;
 
       // save to localStorage
-        login(token, username, email, id, created_at, firebaseUid)
+        login(token, username, email, id, created_at, firebaseUid, refreshToken)
         navigate('/');
         console.log("Login successful token", token);
+        console.log("Login successful refreshToken", refreshToken);
         console.log("Login successful email", email);
         console.log("Login successful id", id);
         console.log("Login successful date", created_at);
@@ -81,7 +84,15 @@ const Login = () => {
 )}
       <div className="signup-form">
       <h2>Login with Us</h2>
-
+      {/* <strong><p className="login-message">
+        Don't have an account? <a href="/Signup">Signup.</a>
+      </p>
+      </strong> */}
+      <p className="login-message">
+        To enjoy full access to our website’s features, including editing and rating content,
+        as well as receiving personalized recommendations, you need to log in to your account.
+        Don’t have an account? Signing up is quick and free. <a href="/signup">Click here to get started.</a>
+      </p>
 
       {errors.general && <p className="error-text">{errors.general}</p>}
       {success && <p className="success-text">{success}</p>}
@@ -123,7 +134,7 @@ const Login = () => {
     </div>
      <div className="continue-section">
           <h1>Continue with</h1>
-
+          {/* Social buttons can go here */}
          <div className="social-buttons-container">
           <button className="social-button google">
             <FcGoogle size={24} style={{ marginRight: 8 }} />
