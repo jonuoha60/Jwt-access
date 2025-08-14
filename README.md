@@ -8,7 +8,7 @@
 
 Run the following command to install the required packages:
 
-```bash
+
 npm install
 This will install both the frontend and backend dependencies, including:
 
@@ -20,7 +20,9 @@ express, jsonwebtoken, bcrypt for the backend
 
 cookie-parser and cors for server configuration
 
-2. Running the Project
+---
+
+## 2. Running the Project
 Backend
 Navigate to the backend folder (if separate):
 
@@ -49,8 +51,9 @@ npm start
 The frontend runs on http://localhost:3001 by default.
 
 Axios requests are configured to send Authorization headers and cookies to handle JWT authentication.
+---
 
-3. Features
+## 3. Features
 User login with email and password
 
 Password hashing with bcrypt
@@ -67,7 +70,7 @@ Protected routes that require authentication
 
 Example of posting and retrieving user-specific data
 
-4. Usage
+## 4. Usage
 Register a new user via the backend API or seed database.
 
 Login from the frontend to obtain an access token and set the refresh token cookie.
@@ -76,7 +79,7 @@ Access protected routes, e.g., fetch user-created movies.
 
 If the access token expires, the frontend automatically requests a new one using the refresh token.
 
-5. Notes / Best Practices
+## 5. Notes / Best Practices
 Access tokens should have short expiration times (15m–1h) for security.
 
 Refresh tokens should be stored securely, preferably in HTTP-only cookies.
