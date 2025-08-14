@@ -90,7 +90,7 @@ In-memory storage for refresh tokens (refreshTokens array) is only suitable for 
 
 Make sure your CORS policy allows credentials if using cookies.
 
-6. References
+## 6. References
 JWT Official Documentation
 
 Express Documentation
