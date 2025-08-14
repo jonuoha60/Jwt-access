@@ -11,6 +11,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   // Initialize state from localStorage or null
   const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [refreshToken, setRefreshToken] = useState(localStorage.getItem("refreshToken") || null);
   const [email, setEmail] = useState(localStorage.getItem("email") || null);
   const [username, setUsername] = useState(localStorage.getItem("username") || null);
   const [userId, setUserId] = useState(localStorage.getItem("userId") || null);
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) => {
   const [firebaseUid, setFirebaseUid] = useState(localStorage.getItem("firebaseUid") || null);
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
 
+  // You had watchList and ratings state but didn't use them - parse JSON if you want them as objects/arrays
   const [watchList, setWatchList] = useState(() => {
     const stored = localStorage.getItem("watchlist");
     return stored ? JSON.parse(stored) : [];
@@ -31,17 +33,19 @@ export const AuthProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  // login function to set the localStorage not wise security wise but for this demo use this
-  const login = (token, username, email, userId, userDate, firebase) => {
+  // Example login function that sets state and localStorage
+  const login = (token, username, email, userId, userDate, firebase, refresh) => {
     setToken(token);
     setEmail(email);
     setUsername(username);
     setUserId(userId);
     setCreated(userDate);
     setFirebaseUid(firebase);
+    setRefreshToken(refresh);
     setIsAuthenticated(true);
 
     localStorage.setItem("token", token);
+    localStorage.setItem("refreshToken", refresh);
     localStorage.setItem("email", email);
     localStorage.setItem("username", username);
     localStorage.setItem("userId", userId);
@@ -80,6 +84,7 @@ export const AuthProvider = ({ children }) => {
         setWatchList,
         setFavorites,
         favorites,
+        refreshToken,
         ratings,
         setRatings,
         firebaseUid
