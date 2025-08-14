@@ -24,26 +24,14 @@ cookie-parser and cors for server configuration
 
 ## 2. Running the Project
 Backend
-Navigate to the backend folder (if separate):
-
-bash
-Copy
-Edit
-cd backend
 Start the server:
 
-bash
-Copy
-Edit
-npm start
+nodemon server.js
 The backend runs on http://localhost:3000 by default.
 
 Make sure to use cookie-parser and enable CORS with credentials for token handling.
 
 Frontend
-Navigate to the frontend folder :
-
-cd frontend
 Start the React development server:
 
 
