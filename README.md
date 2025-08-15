@@ -41,6 +41,25 @@ The frontend runs on http://localhost:3001 by default.
 Axios requests are configured to send Authorization headers and cookies to handle JWT authentication.
 ---
 
+## 4. Databases
+You need to create a users table in mysql with these columns;
+Columns:
+id int AI PK 
+username varchar(255) 
+email varchar(255) 
+password_hash varchar(255) 
+created_at timestamp 
+firebaseUid varchar(2555);
+
+You will also need a refresh_tokens table with these columns;
+Columns:
+id int AI PK 
+token text 
+user_id int 
+created_at timestamp
+
+The user_id is a foreign key constraint from the users table this is important.
+
 ## 3. Features
 User login with email and password
 
